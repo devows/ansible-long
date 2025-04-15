@@ -1,0 +1,15 @@
+
+monitor:
+  workdir: /tmp/monitor
+  notify_slack_webhook: ''
+  notify_slack_channel: 'darwinia-alert-notification'
+  server_name: ''
+  check_disks:
+    - /dev/sdb
+  alert_thread_cpu_p2: 90
+  alert_thread_cpu_p1: 98
+  alert_thread_ram_p2: 90
+  alert_thread_ram_p1: 98
+  alert_thread_disk_p2: 6
+  alert_thread_disk_p1: 3
+

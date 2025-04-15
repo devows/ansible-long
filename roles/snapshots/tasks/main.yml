@@ -1,0 +1,20 @@
+
+- name: Creates workdir
+  file:
+    path: "{{ snapshots.workdir }}"
+    state: directory
+
+- name: Generate scripts file
+  template:
+    src: take.sh
+    dest: "{{ snapshots.workdir }}/take.sh"
+    mode: "0644"
+
+- name: Copy html template
+  copy:
+    src: index.tpl.html
+    dest: "{{ snapshots.workdir }}/index.tpl.html"
+
+- name: Run snapshot
+  command: bash {{ snapshots.workdir }}/take.sh
+

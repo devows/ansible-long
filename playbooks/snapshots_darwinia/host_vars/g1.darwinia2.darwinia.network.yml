@@ -1,0 +1,16 @@
+
+
+snapshots:
+  gcp_project: darwinia2
+  gcp_snapshots_source_disk: darwinia-g1-data
+  gcp_snapshots_zone: asia-southeast1-c
+  gcp_snapshots_name: snapshots-darwinia-g1
+  gcp_snapshots_storage_location: asia-southeast1
+
+  chain_name: darwinia2
+  data_path: darwinia2/data
+  mounted_device: /dev/sdc
+  work_server: darwinia-g1
+  snapshots_workdir: /mnt/snapshots
+  bucket_name: snapshots.darwinia.network
+  website_title: "Darwinia Network Snapshots"

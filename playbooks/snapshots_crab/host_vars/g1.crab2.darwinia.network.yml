@@ -1,0 +1,16 @@
+
+
+snapshots:
+  gcp_project: darwinia2
+  gcp_snapshots_source_disk: crab-g1-data
+  gcp_snapshots_zone: asia-southeast1-c
+  gcp_snapshots_name: snapshots-crab-g1
+  gcp_snapshots_storage_location: asia-southeast1
+
+  chain_name: crab2
+  data_path: crab2/data
+  mounted_device: /dev/sdc
+  work_server: crab-g1
+  snapshots_workdir: /mnt/snapshots
+  bucket_name: crab-snapshots.darwinia.network
+  website_title: "Crab Network Snapshots"

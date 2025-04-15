@@ -1,0 +1,17 @@
+
+- name: Install essentials packages
+  tags:
+    - apt
+  apt:
+    name: "{{ item }}"
+    state: present
+    cache_valid_time: 3600
+    update_cache: true
+  loop:
+    - curl
+    - nload
+    - unzip # required by unarchive module
+    - gnupg # required by apt_repository module
+    - parted # required by parted module
+    - zstd # required by unarchive module (.tar.zst files)
+    - jq

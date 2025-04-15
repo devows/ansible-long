@@ -1,0 +1,3 @@
+
+monitor:
+  notify_slack_webhook: "{{ lookup('env', 'SLACK_INCOMING_WEBHOOK_URL') }}"

@@ -1,0 +1,20 @@
+
+snapshots:
+  workdir: /tmp/node_snapshots
+
+  gcp_project: darwinia2
+  gcp_snapshots_source_disk: pangolin-g2-data
+  gcp_snapshots_zone: europe-west4-c
+  gcp_snapshots_name: snapshots-pangolin-g2
+  gcp_snapshots_storage_location: europe-west4
+
+  chain_name: pangolin2
+  chain_node_rpc: http://127.0.0.1:9944
+  data_path: pangolin2/data
+  mounted_device: /dev/sdc
+  work_server: pangolin-g2
+  snapshots_workdir: /mnt/snapshots
+  bucket_name: snapshots.crab.network
+  website_title: "Pangolin Network Snapshots"
+
+  gomplate_version: v3.11.4

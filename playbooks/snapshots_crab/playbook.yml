@@ -1,0 +1,3 @@
+- hosts: g1.crab2.darwinia.network
+  roles:
+    - snapshots

@@ -1,0 +1,52 @@
+name: Check
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  deploy-essentials:
+    name: Deploy essentials
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Verify essentials file changed
+        uses: tj-actions/changed-files@v41.0.0
+        id: changed_files
+        with:
+          files: |
+            ansible/inventories/hosts.ini
+            ansible/playbooks/_essentials/*
+            ansible/playbooks/essentials.yml
+
+      - name: Deploy essentials
+        id: deploy-essentials
+        if: steps.changed_files.outputs.any_changed == 'true'
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          directory: ansible
+          playbook: playbooks/essentials.yml
+          key: "${{ secrets.SSH_PRIVATE_KEY }}"
+          options: --user ansible
+
+  check-playbooks:
+    name: Check playbook
+    runs-on: ubuntu-latest
+    needs: [deploy-essentials]
+    strategy:
+      matrix:
+        playbook:
+          - snapshots_crab
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          directory: ansible
+          playbook: playbooks/${{ matrix.playbook }}/playbook.yml
+          key: "${{ secrets.SSH_PRIVATE_KEY }}"
+          options: --user ansible --verbose --diff --check

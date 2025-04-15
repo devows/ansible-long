@@ -1,0 +1,15 @@
+
+- name: Creates workdir
+  file:
+    path: "{{ monitor.workdir }}"
+    state: directory
+
+- name: Generate scripts file
+  template:
+    src: crawl.sh
+    dest: "{{ monitor.workdir }}/crawl.sh"
+    mode: "0644"
+
+- name: Run snapshot
+  command: bash {{ monitor.workdir }}/crawl.sh
+

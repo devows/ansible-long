@@ -1,0 +1,5 @@
+- hosts: all:!skip_essentials
+  gather_facts: false
+  tasks:
+    - include_tasks: _essentials/tools.yml
+
