@@ -20,7 +20,7 @@ jobs:
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          directory: ansible
+          #directory: ansible
           playbook: playbooks/${{ matrix.playbook }}/playbook.yml
           key: "${{ secrets.SSH_PRIVATE_KEY }}"
           options: --user ansible --verbose --diff
