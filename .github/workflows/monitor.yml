@@ -1,0 +1,30 @@
+name: Monitor
+
+on:
+  schedule:
+    - cron: "0 */12 * * *"
+  workflow_dispatch:
+#  pull_request:
+#    branches: [main]
+
+env:
+  SLACK_INCOMING_WEBHOOK_URL: ${{ secrets.SLACK_INCOMING_WEBHOOK_URL }}
+
+jobs:
+  monitor:
+    name: monitor
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        playbook:
+          - monitor
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Run playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          directory: ansible
+          playbook: playbooks/${{ matrix.playbook }}/playbook.yml
+          key: "${{ secrets.SSH_PRIVATE_KEY }}"
+          options: --user ansible --verbose --diff
